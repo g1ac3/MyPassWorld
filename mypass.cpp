@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 int N;
 std::vector<std::vector<std::string>> S;
