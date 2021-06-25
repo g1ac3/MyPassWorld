@@ -1,5 +1,6 @@
-
 #include <bits/stdc++.h>
+#include <conio.h>
+#include "PWAUTH.h"
 int N;
 std::vector<std::vector<std::string>> S;
 std::string MENU[8] ={"exit","TAG","ADD","TAG to Mail","TAGALL","CHANGE_PW","EDIT","ERASE"};
@@ -13,10 +14,7 @@ bool LogIn(){
   std::string pw; //パスワード入力させる
   fin.open("pw.txt",std::ios::in);
   std::getline(fin,line);
-  std::cout<<"pw : ";
-  std::cin>>pw;
-  if(pw == line) return true; //パスワード認証
-  else return false;
+  return PWAUTH_check();
 }
 //上のパスワードの変更==================================
 void CHA_PW(){
@@ -154,7 +152,7 @@ bool IF(){
     case 2: ADD_INF(); return true; //2 : データを追加
     case 3: CHK_MAL(); return true; //3 : TAGからMAILを検索
     case 4: TAG_ALL(); return true; //4 : TAGを列挙
-    case 5: CHA_PW(); return true;  //5 : このアプリのパスワード変更
+    case 5: PWAUTH_change(); return true;  //5 : このアプリのパスワード変更
     case 6: ERASEorEDIT(0); return true; //6 : データ編集
     case 7: ERASEorEDIT(1); return true; //7 : データ削除
   }
