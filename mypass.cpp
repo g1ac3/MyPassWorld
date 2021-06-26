@@ -16,15 +16,6 @@ bool LogIn(){
   std::getline(fin,line);
   return PWAUTH_check();
 }
-//上のパスワードの変更==================================
-void CHA_PW(){
-  std::string pw; //パスワード入力用文字列
-  std::ofstream ofs("pw.txt"); //ファイルを開く
-  std::cout<<"new pw : ";
-  std::cin>>pw;
-  ofs<<pw<<"\n";
-  ofs.close();
-}
 //ファイルから配列に読み込み============================
 void make_V(){
   std::ifstream fin;
