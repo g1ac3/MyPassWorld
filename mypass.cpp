@@ -4,9 +4,19 @@
 int N;
 std::vector<std::vector<std::string>> S;
 std::string MENU[8] ={"exit","TAG","ADD","TAG to Mail","TAGALL","CHANGE_PW","EDIT","ERASE"};
-static const std::string DL = "=============\n";
+static const std::string DL = "==========================\n";
 static const int M=4;
 //関数==================================================
+void Greeting(){
+  std::string VERSION = "3.1"; //バージョン
+  std::string CREATEDATE = "2021/07/08"; //プログラム作成日時
+  std::cout<<"=========Ver_"<<VERSION<<"==========\n";
+  std::cout<<"Author : 'g1ac3'\n";
+  std::cout<<"This program was created : "<<CREATEDATE<<"\n";
+  std::cout<<"Github : https://github.com/g1ac3\n\n";
+  std::cout<<"G1ac3 will create your PW!!\n";
+  std::cout<<"==========================\n\n";
+}
 //このアプリへのログイン================================
 bool LogIn(){
   std::ifstream fin; //ファイル読み取り
@@ -15,6 +25,15 @@ bool LogIn(){
   fin.open("pw.txt",std::ios::in);
   std::getline(fin,line);
   return PWAUTH_check();
+}
+//上のパスワードの変更==================================
+void CHA_PW(){
+  std::string pw; //パスワード入力用文字列
+  std::ofstream ofs("pw.txt"); //ファイルを開く
+  std::cout<<"new pw : ";
+  std::cin>>pw;
+  ofs<<pw<<"\n";
+  ofs.close();
 }
 //ファイルから配列に読み込み============================
 void make_V(){
@@ -131,10 +150,12 @@ void ERASEorEDIT(int select){//select==0 : edit, select==1 : erase
 }
 //メニュー画面=========================================
 bool IF(){
+  std::cout<<"---|MENU|--------------------\n";
   for(int i=0;i<8;i++){ //メニューを表示
-    if(i==6) std::cout<<DL;
+    if(i==6) std::cout<<"-------------\n";
     printf("%2d : %s\n",i,MENU[i].c_str());
   }
+  std::cout<<"-----------------------------\n";
   int select; //メニュー選択
   std::cin>>select;
   switch(select){
@@ -151,6 +172,7 @@ bool IF(){
 }
 //MAIN=================================================
 int main(){
+  Greeting();
   if(!LogIn()) return 0; //最初にこのアプリを使うためのパスワードを入力
   make_V();
   while(IF());
