@@ -6,7 +6,7 @@ all.txt : パスワード情報等を保存するファイル<br>
 mypass.cpp : main関数を含むアプリ本体<br>
 pw.txt : 本アプリを使用するためのパスワードを保存するファイル<br>
 
-使用方法<br>
+コンパイル方法<br>
 g++ mypass.cpp PWAUTH.cpp -o MyPassWorld<br>
 
 ------更新------<br>
