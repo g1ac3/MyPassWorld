@@ -1,7 +1,6 @@
 # MyPassWorld
 パスワード管理アプリ<br>
-PWAUTH.cpp : パスワード入力に関するプログラムファイル<br>
-PWAUTH.h : ヘッダファイル<br>
+PWAUTH : パスワード認証系のリポジトリ<br>
 all.txt : パスワード情報等を保存するファイル<br>
 mypass.cpp : main関数を含むアプリ本体<br>
 pw.txt : 本アプリを使用するためのパスワードを保存するファイル<br>
