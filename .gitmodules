@@ -1,3 +1,6 @@
 [submodule "BLAKE3"]
 	path = BLAKE3
 	url = ./BLAKE3
+[submodule "PWAUTH"]
+	path = PWAUTH
+	url = ./PWAUTH/
