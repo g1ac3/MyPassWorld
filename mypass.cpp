@@ -4,7 +4,8 @@ std::vector<std::vector<std::string>> S;
 std::string MENU[8] ={"exit","TAG","ADD","TAG to Mail","TAGALL","CHANGE_PW","EDIT","ERASE"};
 static const std::string DL = "==========================\n";
 static const int M=4;
-std::string ofile = "pw.txt";
+std::string ofile_pw = "pw.txt";
+std::string ofile_all = "all.txt";
 //関数==================================================
 void Greeting(){
     std::string VERSION = "3.1"; //バージョン
@@ -18,13 +19,13 @@ void Greeting(){
 }
 //このアプリへのログイン================================
 bool LogIn(){
-    return PWAUTH_check(ofile);
+    return PWAUTH_check(ofile_pw);
 }
 //ファイルから配列に読み込み============================
 void make_V(){
     std::ifstream fin;
     std::string line;
-    fin.open("all.txt",std::ios::in);
+    fin.open(ofile_all,std::ios::in);
     std::getline(fin,line);
     N = std::stoi(line); //アカウントの個数を読み取る
     S.clear(); //配列を初期化
@@ -37,7 +38,7 @@ void make_V(){
 }
 //追加==================================================
 void ADD_INF(){
-    std::ofstream ofs("all.txt");
+    std::ofstream ofs(ofile_all);
     ofs<<std::to_string(N+1)<<"\n"; //個数+1してファイルに出力
     for(int i=0;i<N;i++)for(int j=0;j<M;j++) ofs<<S[i][j]<<"\n"; //最後まではそのままファイルに出力
     S.resize(++N); //データ一つ分配列を拡張
@@ -112,7 +113,7 @@ void ERASEorEDIT(int select){//select==0 : edit, select==1 : erase
     else std::cout<<"Do you want to edit this data? No:0 Yes:1  : ";
     std::cin>>t;
     if(t){ //確認の変数が真なら
-        std::ofstream ofs("all.txt");
+        std::ofstream ofs(ofile_all);
         ofs<<std::to_string(N-select)<<"\n"; //editならselect=0で個数減らない、eraseならselect=1で減る
         for(int i=0;i<a;i++) for(int j=0;j<M;j++) ofs<<S[i][j]<<"\n"; //変更箇所まではそのままファイルに出力
         if(select == 0){//edit
@@ -149,7 +150,7 @@ bool IF(){
         case 2: ADD_INF(); return true; //2 : データを追加
         case 3: CHK_MAL(); return true; //3 : TAGからMAILを検索
         case 4: TAG_ALL(); return true; //4 : TAGを列挙
-        case 5: PWAUTH_change(ofile); return true;  //5 : このアプリのパスワード変更
+        case 5: PWAUTH_change(ofile_pw); return true;  //5 : このアプリのパスワード変更
         case 6: ERASEorEDIT(0); return true; //6 : データ編集
         case 7: ERASEorEDIT(1); return true; //7 : データ削除
     }
