@@ -14,7 +14,11 @@ OBJS = $(SRCS:.cpp=.o)
 TARGET = MyPassWorld
 
 # Default target
-all: $(TARGET)
+all: submodules $(TARGET)
+
+# Submodules
+submodules:
+	git submodule update --init --recursive
 
 # Link object files to create the executable
 $(TARGET): $(OBJS)
@@ -28,4 +32,4 @@ $(TARGET): $(OBJS)
 clean:
 	rm -f $(TARGET) $(OBJS)
 
-.PHONY: all clean
+.PHONY: all clean submodules
