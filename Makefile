@@ -2,7 +2,7 @@
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -static -Wall
+CXXFLAGS = -static -Wall -IPWAUTH
 
 # Source files
 SRCS = mypass.cpp PWAUTH/PWAUTH.cpp
@@ -14,14 +14,14 @@ OBJS = $(SRCS:.cpp=.o)
 TARGET = MyPassWorld
 
 # Default target
-all: submodules $(TARGET)
+all: $(TARGET)
 
 # Submodules
 submodules:
 	git submodule update --init --recursive
 
 # Link object files to create the executable
-$(TARGET): $(OBJS)
+$(TARGET): submodules $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
 # Compile source files into object files
