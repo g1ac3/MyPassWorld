@@ -1,6 +1,7 @@
 #include "PWAUTH/PWAUTH.h"
 #include <iostream>
 #include <vector>
+#include <fstream>
 int N;
 std::vector<std::vector<std::string>> S;
 std::string MENU[8] ={"exit","TAG","ADD","TAG to Mail","TAGALL","CHANGE_PW","EDIT","ERASE"};
