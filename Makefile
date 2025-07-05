@@ -25,7 +25,7 @@ all: $(TARGET)
 
 # Submodules
 submodules:
-	git submodule update --init --recursive
+	git submodule update --remote --merge
 
 # Link object files to create the executable
 $(TARGET): submodules $(OBJS)
